@@ -1,9 +1,15 @@
 # .gitpod.yml
 tasks:
-  - name: Install Raylib
+  - name: Set up VNC & Raylib
     init: |
+      # Install VNC, XFCE (lightweight desktop), and Raylib dependencies
       sudo apt-get update
-      sudo apt-get install -y libgl1-mesa-dev xorg-dev git make g++
+      sudo apt-get install -y tigervnc-standalone-server xfce4 xfce4-goodies libgl1-mesa-dev xorg-dev git make g++
+
+      # Set up VNC password (default: "123456")
+      mkdir -p ~/.vnc
+      echo "123456" | vncpasswd -f > ~/.vnc/passwd
+      chmod 600 ~/.vnc/passwd
 
       # Clone and compile Raylib
       git clone --depth 1 https://github.com/raysan5/raylib.git
