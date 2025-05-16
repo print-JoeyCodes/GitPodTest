@@ -1,0 +1,13 @@
+# .gitpod.yml
+tasks:
+  - name: Install Raylib
+    init: |
+      sudo apt-get update
+      sudo apt-get install -y libgl1-mesa-dev xorg-dev git make g++
+
+      # Clone and compile Raylib
+      git clone --depth 1 https://github.com/raysan5/raylib.git
+      cd raylib/src
+      make PLATFORM=PLATFORM_DESKTOP
+      sudo make install
+      cd ../..
